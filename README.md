@@ -49,7 +49,26 @@ public class UserService {
 }
 ```
 
+* Repository: A interface UserRepository é encarregada do acesso aos repositórios, ou, camada de acessos de dados. No Spring Data JPA, os repositórios são interfaces uma vez que o framework cria a implementação automática em tempo de execução. Isso significa que o UserRepository automaticamente já tem métodos como os seguintes, <br>
+save(User user) → salvar ou atualizar um usuário <br>
 
+findById(Long id) → buscar usuário pelo ID <br>
+
+findAll() → buscar todos os usuários <br>
+
+deleteById(Long id) → excluir usuário pelo ID <br>
+
+```
+package com.jobscheduler.project.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.jobscheduler.project.entities.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+	
+}
+```
 
 
 
