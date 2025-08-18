@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_orderservice")
-public class OrderService implements Serializable {
+public class JobOrder implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -26,10 +26,10 @@ public class OrderService implements Serializable {
 	@JoinColumn(name = "client_id")
 	private User client;
 	
-	public OrderService() {
+	public JobOrder() {
 	}
 	
-	public OrderService(Long id, Instant moment, User client) {
+	public JobOrder(Long id, Instant moment, User client) {
 		super();
 		this.id = id;
 		this.moment = moment;
@@ -76,7 +76,7 @@ public class OrderService implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrderService other = (OrderService) obj;
+		JobOrder other = (JobOrder) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

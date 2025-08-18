@@ -26,7 +26,7 @@ public class User implements Serializable{
 	private String password;
 	
 	@OneToMany(mappedBy = "client")
-	private List<OrderService> orders =  new ArrayList<>();; 
+	private List<JobOrder> orders =  new ArrayList<>();; 
 	
 	public User() {
 	}
@@ -80,7 +80,7 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public List<OrderService> getOrders() {
+	public List<JobOrder> getOrders() {
 		return orders;
 	}
 
