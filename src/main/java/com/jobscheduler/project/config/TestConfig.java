@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
+import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
@@ -20,12 +22,22 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private JobOrderRepository jobOrderRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Category ct1 = new Category(null, "Maintenance");
+		Category ct2 = new Category(null, "Training");
+		Category ct3 = new Category(null, "Programming");
+		Category ct4 = new Category(null, "Support");
+		
+		categoryRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4));
 		
 		User user1 = new User(null, "Clara Almeida", "claraalma@gmail.com", "55998745321", "h54fiw21u");
 		User user2 = new User(null, "Ricardo Peixoto", "rikapeix@gmail.com", "11997524536", "123ABCDs456");
