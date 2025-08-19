@@ -1,7 +1,7 @@
 package com.jobscheduler.project.entities.enums;
 
 public enum OrderStatus {
-	PAYMENT_ONAPPROVA(1),
+	PAYMENT_ONAPPROVAL(1),
 	PAYMENT_CONCLUDED(2),
 	SHIPPED(3),
 	DELIVERED(4),
