@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobscheduler.project.entities.Category;
-import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.repositories.CategoryRepository;
 
 

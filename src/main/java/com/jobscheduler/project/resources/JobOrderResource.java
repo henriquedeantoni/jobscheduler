@@ -14,7 +14,7 @@ import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.services.JobOrderService;
 
 @RestController
-@RequestMapping(value = "/job-order")
+@RequestMapping(value = "/job-orders")
 public class JobOrderResource {
 	
 	@Autowired
