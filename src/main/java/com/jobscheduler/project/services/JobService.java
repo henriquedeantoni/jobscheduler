@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.repositories.JobRepository;
 
-
 @Service
 public class JobService {
 
