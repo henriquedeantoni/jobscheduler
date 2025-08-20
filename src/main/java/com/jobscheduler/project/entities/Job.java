@@ -1,13 +1,31 @@
 package com.jobscheduler.project.entities;
 
-public class Job {
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_job")
+public class Job implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String description;
 	private Integer duration;
 	private Double price;
 	private Double hourPrice;
+	
+	private Set<Category> categories = new HashSet<>();
 	
 	public Job() {
 	}

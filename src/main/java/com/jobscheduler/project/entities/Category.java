@@ -1,6 +1,8 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +20,8 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	private Set<Job> jobs = new HashSet<>();
 	
 	public Category() {
 	}
@@ -42,6 +46,10 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Job> getJobs() {
+		return jobs;
 	}
 
 	@Override
