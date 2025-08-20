@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.jobscheduler.project.entities.Category;
+import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
+import com.jobscheduler.project.repositories.JobRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private JobRepository jobRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -51,7 +56,13 @@ public class TestConfig implements CommandLineRunner {
 		
 		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3));
 		
+		Job j1 = new Job(null, "Web Maintenance", "Lorem ipsum dolor sit amet, consect.", 8, 400.00, 50.00); 
+		Job j2 = new Job(null, "Software Support", "Nulla eu imperdit purus. Maecenas an.", 16, 800.00, 50.00); 
+		Job j3 = new Job(null, "Design Training", "Nam eleifend maximus tortor, at mols.", 8, 600.00, 75.00); 
+		Job j4 = new Job(null, "CyberSecurity Training", "Donec aliquet odio ac roncus cursus.", 24, 2160.00, 90.00); 
+		Job j5 = new Job(null, "Software creation", "Cras fringilla convalis sem vel faucbus.", 80, 6400.00, 80.00);
 		
+		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5));
 	}
 }
 
