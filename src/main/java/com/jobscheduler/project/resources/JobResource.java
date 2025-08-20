@@ -9,26 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobscheduler.project.entities.JobOrder;
+import com.jobscheduler.project.entities.Job;
+import com.jobscheduler.project.services.JobService;
 
 @RestController
 @RequestMapping(value = "/job")
 public class JobResource {
 	
 	@Autowired
-	private JobService service;
-	
+	private JobService jobService;
 	
 	@GetMapping
-	public ResponseEntity<List<JobOrder>> findAll(){
-		List<JobOrder> list = service.findAll();
+	public ResponseEntity<List<Job>> findAll(){
+		List<Job> list = jobService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<JobOrder> findById(@PathVariable Long id){
-		JobOrder obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+	public ResponseEntity<Job> findById(@PathVariable Long id){
+		Job job = jobService.findById(id);
+		return ResponseEntity.ok().body(job);
 	}
-	
 }
