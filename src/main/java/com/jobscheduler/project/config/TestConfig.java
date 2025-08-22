@@ -41,18 +41,21 @@ public class TestConfig implements CommandLineRunner {
 		Category ct2 = new Category(null, "Training");
 		Category ct3 = new Category(null, "Programming");
 		Category ct4 = new Category(null, "Support");
+		Category ct4 = new Category(null, "Projects");
 		
 		categoryRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4));
 		
 		User user1 = new User(null, "Clara Almeida", "claraalma@gmail.com", "55998745321", "h54fiw21u");
 		User user2 = new User(null, "Ricardo Peixoto", "rikapeix@gmail.com", "11997524536", "123ABCDs456");
 		User user3 = new User(null, "Ana Silva", "anasilvafr@gmail.com", "16987451265", "123qiud");
+		User user4 = new User(null, "Carlos Santos", "carlosantosrp@gmail.com", "21997850123", "123qiud");
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3));
 		
 		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1);
 		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2);
 		JobOrder jo3 = new JobOrder(null, Instant.parse("2019-07-22T21:21:22Z"), OrderStatus.DELIVERED, user1); 
+		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3); 
 		
 		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3));
 		
@@ -61,6 +64,7 @@ public class TestConfig implements CommandLineRunner {
 		Job j3 = new Job(null, "Design Training", "Nam eleifend maximus tortor, at mols.", 8, 600.00, 75.00); 
 		Job j4 = new Job(null, "CyberSecurity Training", "Donec aliquet odio ac roncus cursus.", 24, 2160.00, 90.00); 
 		Job j5 = new Job(null, "Software creation", "Cras fringilla convalis sem vel faucbus.", 80, 6400.00, 80.00);
+		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, 13800.00, 115.00);
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5));
 	}
