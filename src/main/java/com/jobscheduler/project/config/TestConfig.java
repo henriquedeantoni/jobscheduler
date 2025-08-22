@@ -67,6 +67,18 @@ public class TestConfig implements CommandLineRunner {
 		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, 13800.00, 115.00);
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5));
+		
+		j1.getCategories().add(ct1);
+		j2.getCategories().add(ct3);
+		j2.getCategories().add(ct4);
+		j3.getCategories().add(ct2);
+		j4.getCategories().add(ct2);
+		j4.getCategories().add(ct3);
+		j5.getCategories().add(ct3);
+		j5.getCategories().add(ct5);
+		j6.getCategories().add(ct5);
+		
+		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
 	}
 }
 
