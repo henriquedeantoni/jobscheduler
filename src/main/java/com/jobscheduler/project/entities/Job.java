@@ -95,6 +95,10 @@ public class Job implements Serializable {
 	public void setHourPrice(Double hourPrice) {
 		this.hourPrice = hourPrice;
 	}
+	
+	public Set<Category> getCategories() {
+		return categories;
+	}
 
 	@Override
 	public int hashCode() {
