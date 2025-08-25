@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
+import com.jobscheduler.project.entities.OrderItem;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
@@ -79,6 +80,10 @@ public class TestConfig implements CommandLineRunner {
 		j6.getCategories().add(ct5);
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
+
+		OrderItem orderItem1 = new OrderItem(jo1, j1, 2, j1.getPrice());
+		OrderItem orderItem2 = new OrderItem(jo1, j2, 1, j2.getPrice());
+		OrderItem orderItem3 = new OrderItem(jo2, j2, 3, j2.getPrice());
 	}
 }
 
