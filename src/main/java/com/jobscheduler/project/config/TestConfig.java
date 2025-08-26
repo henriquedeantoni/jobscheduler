@@ -12,6 +12,7 @@ import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.OrderItem;
+import com.jobscheduler.project.entities.Payment;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
@@ -60,7 +61,8 @@ public class TestConfig implements CommandLineRunner {
 		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1);
 		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2);
 		JobOrder jo3 = new JobOrder(null, Instant.parse("2019-07-22T21:21:22Z"), OrderStatus.DELIVERED, user1); 
-		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3); 
+		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3);  
+		JobOrder jo5 = new JobOrder(null, Instant.parse("2020-08-05T21:21:22Z"), OrderStatus.PAYMENT_ONAPPROVAL, user4); 
 		
 		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3));
 		
@@ -91,7 +93,14 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem orderItem4 = new OrderItem(jo3, j3, 2, j3.getPrice());
 	
 		orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
-	
+
+		Payment payment1 = new Payment(null, Instant.parse("2019-06-20T19:15:07Z"), jo1);
+		jo1.setPayment(payment1);
+		Payment payment2 = new Payment(null, Instant.parse("2019-07-21T04:32:10Z"), jo2);
+		jo2.setPayment(payment2);
+		
+		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2));
+		
 	}
 }
 
