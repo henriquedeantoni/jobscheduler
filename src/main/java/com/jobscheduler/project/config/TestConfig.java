@@ -17,6 +17,7 @@ import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
+import com.jobscheduler.project.repositories.OrderItemRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
 @Configuration
@@ -34,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private JobRepository jobRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -84,6 +88,10 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem orderItem1 = new OrderItem(jo1, j1, 2, j1.getPrice());
 		OrderItem orderItem2 = new OrderItem(jo1, j2, 1, j2.getPrice());
 		OrderItem orderItem3 = new OrderItem(jo2, j2, 3, j2.getPrice());
+		OrderItem orderItem4 = new OrderItem(jo3, j3, 2, j3.getPrice());
+	
+		orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+	
 	}
 }
 
