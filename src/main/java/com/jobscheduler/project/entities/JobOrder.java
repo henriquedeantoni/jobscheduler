@@ -40,7 +40,7 @@ public class JobOrder implements Serializable {
 	@OneToMany(mappedBy = "id.jobOrder")
 	private Set<OrderItem> items = new HashSet<>();
 	
-	
+	private Payment payment;
 	
 	public JobOrder() {
 	}
