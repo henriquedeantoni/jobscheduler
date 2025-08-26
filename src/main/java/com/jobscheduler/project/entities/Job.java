@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +37,9 @@ public class Job implements Serializable {
 	inverseJoinColumns = @JoinColumn(name = "category_id")
 			)
 	private Set<Category> categories = new HashSet<>();
+	
+	@OneToMany(mappedBy = "id.job")
+	private Set<OrderItem> items = new HashSet<>();
 	
 	public Job() {
 	}
@@ -98,6 +104,15 @@ public class Job implements Serializable {
 	
 	public Set<Category> getCategories() {
 		return categories;
+	}
+	
+	@JsonIgnore
+	public Set<JobOrder> getJobOrders(){
+		Set<JobOrder> set = new HashSet<>();
+		for(OrderItem o : items) {
+			set.add(o.getJobOrder());
+		}
+		return set;
 	}
 
 	@Override
