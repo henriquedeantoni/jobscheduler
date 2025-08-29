@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.repositories.UserRepository;
+import com.jobscheduler.project.services.exceptions.DatabaseException;
 import com.jobscheduler.project.services.exceptions.ResourceNotFoundException;
 
 
@@ -38,7 +39,7 @@ public class UserService {
 		} catch (EmptyResultDataAccessException e){
 			throw new ResourceNotFoundException(id);
 		} catch (DataIntegrityViolationException e) {
-			e.printStackTrace();
+			throw new DatabaseException(e.getMessage());
 		}
 	}	
 	
