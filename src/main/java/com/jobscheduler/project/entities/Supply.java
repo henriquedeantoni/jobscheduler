@@ -21,7 +21,6 @@ public class Supply implements Serializable {
 	private String description;
 	private String codeReference;
 	private Double cost;
-	private 
 	
 	public Supply() {
 	}
