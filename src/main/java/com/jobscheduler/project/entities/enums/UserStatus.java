@@ -3,7 +3,9 @@ package com.jobscheduler.project.entities.enums;
 public enum UserStatus {
 	ACTIVE(1),
 	INACTIVE(2),
-	ONAPPROVAL(3);
+	ONAPPROVAL(3),
+	SUSPENDED(4),
+	EXCLUDED(5);
 	
 	private int code;
 	
