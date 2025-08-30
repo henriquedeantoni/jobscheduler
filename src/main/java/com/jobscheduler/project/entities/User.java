@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jobscheduler.project.entities.enums.UserStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,8 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 	
+	private UserStatus userStatus;
+	
 	@JsonIgnore	
 	@OneToMany(mappedBy = "client")
 	private List<JobOrder> orders =  new ArrayList<>();; 
@@ -41,6 +44,7 @@ public class User implements Serializable{
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.userStatus = UserStatus.ONAPPROVAL;
 	}
 
 	public Long getId() {
