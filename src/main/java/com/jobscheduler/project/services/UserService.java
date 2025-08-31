@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.jobscheduler.project.entities.User;
+import com.jobscheduler.project.entities.enums.UserStatus;
 import com.jobscheduler.project.repositories.UserRepository;
 import com.jobscheduler.project.services.exceptions.DatabaseException;
 import com.jobscheduler.project.services.exceptions.ResourceNotFoundException;
@@ -72,5 +73,13 @@ public class UserService {
 		entity.setName(user.getName());
 		entity.setEmail(user.getEmail());
 		entity.setPhone(user.getPhone());
+	}
+	
+	private void changeStatus(UserStatus userStatus, Long id) {
+		try {
+			User entity = repository.getReferenceById(id);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(e.getMessage());
+		}
 	}
 }

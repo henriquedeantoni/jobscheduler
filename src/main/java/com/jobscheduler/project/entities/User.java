@@ -26,7 +26,7 @@ public class User implements Serializable{
 	private String name;
 	private String email;
 	private String phone;
-	private String password;
+	private String passwordHash;
 	
 	private UserStatus userStatus;
 	
@@ -37,13 +37,13 @@ public class User implements Serializable{
 	public User() {
 	}
 
-	public User(Long id, String name, String email, String phone, String password) {
+	public User(Long id, String name, String email, String phone, String passwordHash) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
-		this.password = password;
+		this.passwordHash = passwordHash;
 		this.userStatus = UserStatus.ONAPPROVAL;
 	}
 
@@ -79,12 +79,12 @@ public class User implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public List<JobOrder> getOrders() {

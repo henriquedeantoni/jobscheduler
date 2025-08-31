@@ -24,7 +24,7 @@ public class Supply implements Serializable {
 	
 	public Supply() {
 	}
-
+	
 	public Supply(Long id, String name, String description, String codeReference, Double cost) {
 		super();
 		this.id = id;
