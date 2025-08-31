@@ -2,6 +2,7 @@ package com.jobscheduler.project.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jobscheduler.project.entities.User;
+import com.jobscheduler.project.entities.enums.UserStatus;
 import com.jobscheduler.project.services.UserService;
 
 @RestController
@@ -54,6 +56,16 @@ public class UserResource {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
 		user = service.update(id, user);
+		return ResponseEntity.ok().body(user);
+	}
+	
+	@PutMapping(value = "/{id}/status")
+	public ResponseEntity<User> updateStatus(
+		@PathVariable Long id,
+		@RequestBody Map<String, UserStatus> body
+		) {
+		UserStatus userStatus = body.get("userStatus");
+		User user = service.changeStatus(userStatus, id);
 		return ResponseEntity.ok().body(user);
 	}
 }

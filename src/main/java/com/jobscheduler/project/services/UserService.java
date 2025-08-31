@@ -79,12 +79,13 @@ public class UserService {
 		entity.setPhone(user.getPhone());
 	}
 	
-	private void changeStatus(UserStatus userStatus, Long id) {
+	public User changeStatus(UserStatus userStatus, Long id) {
 		try {
 			User entity = repository.getReferenceById(id);
 			if(entity.getUserStatus() != UserStatus.INACTIVE) {
 				entity.setUserStatus(userStatus);
 			}
+			return repository.save(entity);
 		} catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(e.getMessage());
 		}

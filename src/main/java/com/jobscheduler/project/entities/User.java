@@ -32,7 +32,7 @@ public class User implements Serializable{
 	
 	@JsonIgnore	
 	@OneToMany(mappedBy = "client")
-	private List<JobOrder> orders =  new ArrayList<>();; 
+	private List<JobOrder> orders =  new ArrayList<>();
 	
 	public User() {
 	}
