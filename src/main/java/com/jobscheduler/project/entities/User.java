@@ -86,6 +86,14 @@ public class User implements Serializable{
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
+	
+	public void setUserStatus(UserStatus userStatus) {
+		this.userStatus = userStatus;
+	}
+	
+	public UserStatus getUserStatus() {
+		return userStatus;
+	}
 
 	public List<JobOrder> getOrders() {
 		return orders;

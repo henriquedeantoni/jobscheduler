@@ -12,6 +12,7 @@ import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.UserStatus;
 import com.jobscheduler.project.repositories.UserRepository;
 import com.jobscheduler.project.services.exceptions.DatabaseException;
+import com.jobscheduler.project.services.exceptions.InactiveUserException;
 import com.jobscheduler.project.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -61,12 +62,15 @@ public class UserService {
 	public User update(Long id, User user) {
 		try {
 			User entity = repository.getReferenceById(id);
-			updateData(entity, user);
-			return repository.save(entity);			
-		}catch(EntityNotFoundException e) {
+			if(entity.getUserStatus() != UserStatus.INACTIVE) {
+				updateData(entity, user);				
+				return repository.save(entity);			
+			} else {
+				throw new InactiveUserException("User is inactive, update is not allowed.");
+			}
+		} catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(e.getMessage());
 		}
-
 	}
 	
 	private void updateData(User entity, User user) {
@@ -78,6 +82,9 @@ public class UserService {
 	private void changeStatus(UserStatus userStatus, Long id) {
 		try {
 			User entity = repository.getReferenceById(id);
+			if(entity.getUserStatus() != UserStatus.INACTIVE) {
+				entity.setUserStatus(userStatus);
+			}
 		} catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(e.getMessage());
 		}
