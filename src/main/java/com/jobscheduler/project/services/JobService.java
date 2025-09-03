@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.repositories.JobRepository;
 
@@ -22,5 +23,9 @@ public class JobService {
 	public Job findById(Long id) {
 	 	Optional<Job> obj =  repository.findById(id);
 		return obj.get();
+	}
+	
+	public List<Job> findByCategory(Category category){
+		return repository.findByCategory(category);
 	}
 }
