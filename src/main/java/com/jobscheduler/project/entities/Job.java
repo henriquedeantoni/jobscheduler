@@ -30,6 +30,7 @@ public class Job implements Serializable {
 	private Integer duration;
 	private Double price;
 	private Double hourPrice;
+	private String location;
 	
 	@ManyToMany
 	@JoinTable(name = "tb_job_category", 
@@ -44,7 +45,7 @@ public class Job implements Serializable {
 	public Job() {
 	}
 
-	public Job(Long id, String title, String description, Integer duration, Double price, Double hourPrice) {
+	public Job(Long id, String title, String description, Integer duration, Double price, Double hourPrice, String location) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -52,6 +53,7 @@ public class Job implements Serializable {
 		this.duration = duration;
 		this.price = price;
 		this.hourPrice = hourPrice;
+		this.location = location;
 	}
 
 	public Long getId() {
@@ -105,6 +107,15 @@ public class Job implements Serializable {
 	public Set<Category> getCategories() {
 		return categories;
 	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	
 	
 	@JsonIgnore
 	public Set<JobOrder> getJobOrders(){

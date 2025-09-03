@@ -14,7 +14,7 @@ import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.services.JobService;
 
 @RestController
-@RequestMapping(value = "/job")
+@RequestMapping(value = "/jobs")
 public class JobResource {
 	
 	@Autowired
