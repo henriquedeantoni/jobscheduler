@@ -7,9 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.services.JobService;
 
@@ -32,9 +32,11 @@ public class JobResource {
 		return ResponseEntity.ok().body(job);
 	}
 	
-	@GetMapping(value = "/{category}")
-	public ResponseEntity<List<Job>> findByCategory(@PathVariable Category category){
-		List<Job> list = jobService.findByCategory(category);
-		return ResponseEntity.ok().body(list);
-	}
+    @GetMapping
+    public ResponseEntity<List<Job>> findAll(
+            @RequestParam(required = false) String category)  {
+
+        List<Job> list = jobService.search(category);
+        return ResponseEntity.ok().body(list);
+    }
 }

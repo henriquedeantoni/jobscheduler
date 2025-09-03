@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import static com.jobscheduler.project.specifications.JobSpecifications.hasCategory;
 import org.springframework.stereotype.Service;
 
-import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.repositories.JobRepository;
 
@@ -24,8 +24,8 @@ public class JobService {
 	 	Optional<Job> obj =  repository.findById(id);
 		return obj.get();
 	}
-	
-	public List<Job> findByCategory(Category category){
-		return repository.findByCategory(category);
+		
+	public List<Job> search(String category){
+		return repository.findAll(hasCategory(category));
 	}
 }
