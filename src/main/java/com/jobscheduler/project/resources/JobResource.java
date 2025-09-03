@@ -32,7 +32,7 @@ public class JobResource {
 		return ResponseEntity.ok().body(job);
 	}
 	
-    @GetMapping
+    @GetMapping(value = "/search")
     public ResponseEntity<List<Job>> findAll(
             @RequestParam(required = false) String category)  {
 
