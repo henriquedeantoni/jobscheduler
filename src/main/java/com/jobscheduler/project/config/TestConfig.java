@@ -22,7 +22,7 @@ import com.jobscheduler.project.repositories.OrderItemRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
 @Configuration
-@Profile("Test")
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
@@ -49,14 +49,14 @@ public class TestConfig implements CommandLineRunner {
 		Category ct4 = new Category(null, "Support");
 		Category ct5 = new Category(null, "Projects");
 		
-		categoryRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4));
+		categoryRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5));
 		
 		User user1 = new User(null, "Clara Almeida", "claraalma@gmail.com", "55998745321", "h54fiw21u");
 		User user2 = new User(null, "Ricardo Peixoto", "rikapeix@gmail.com", "11997524536", "123ABCDs456");
 		User user3 = new User(null, "Ana Silva", "anasilvafr@gmail.com", "16987451265", "123qiud");
 		User user4 = new User(null, "Carlos Santos", "carlosantosrp@gmail.com", "21997850123", "123qiud");
 		
-		userRepository.saveAll(Arrays.asList(user1, user2, user3));
+		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
 		
 		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1);
 		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2);
@@ -64,7 +64,7 @@ public class TestConfig implements CommandLineRunner {
 		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3);  
 		JobOrder jo5 = new JobOrder(null, Instant.parse("2020-08-05T21:21:22Z"), OrderStatus.PAYMENT_ONAPPROVAL, user4); 
 		
-		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3));
+		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3, jo4));
 		
 		Job j1 = new Job(null, "Web Maintenance", "Lorem ipsum dolor sit amet, consect.", 8, 400.00, 50.00, ""); 
 		Job j2 = new Job(null, "Software Support", "Nulla eu imperdit purus. Maecenas an.", 16, 800.00, 50.00, ""); 
@@ -73,7 +73,7 @@ public class TestConfig implements CommandLineRunner {
 		Job j5 = new Job(null, "Software creation", "Cras fringilla convalis sem vel faucbus.", 80, 6400.00, 80.00, "");
 		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, 13800.00, 115.00, "");
 		
-		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5));
+		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
 		
 		j1.getCategories().add(ct1);
 		j2.getCategories().add(ct3);
