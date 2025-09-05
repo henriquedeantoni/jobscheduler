@@ -3,7 +3,7 @@
 
 ### USER RESOURCE
 
-* Controller:  a classe UserResource é uma controller, ela é encarregada de criar os endpoints da Api. A parte inicial @Autowired é encarregada de efetuar a injeção de dependência, da camada de service para dentro da classe controller. Note que o @GetMapping são os mapeamentos dos métodos do tipo GET das requisições, a primeira é um findAll() e a segunda um findById(). 
+* Controller:  a classe UserResource é uma controller REST, ela é encarregada de expor os endpoints da API. A anotation @Autowired é encarregada de efetuar a injeção de dependência, injeta a instância da camada de service para dentro da camada controller. Note que o @GetMapping são os mapeamentos dos métodos do tipo GET das requisições, a primeira é um findAll() e a segunda um findById(). 
 
 ```
 @RestController
