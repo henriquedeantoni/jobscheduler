@@ -21,7 +21,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_orderservice")
+@Table(name = "tb_order")
 public class JobOrder implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
