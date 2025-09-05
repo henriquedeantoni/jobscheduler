@@ -104,7 +104,18 @@ public class User implements Serializable{
 	}
 
 ```
+## Testes no H2 CONSOLE
 
+
+### Queries
+
+```
+SELECT * 
+FROM TB_JOB j
+INNER JOIN TB_JOB_CATEGORY jc ON j.ID = jc.JOB_ID
+INNER JOIN TB_CATEGORY c ON jc.CATEGORY_ID = c.ID
+WHERE UPPER(c.NAME) IN ('TRAINING');
+```
 
 ### Reference Documentation
 For further reference, please consider the following sections:
