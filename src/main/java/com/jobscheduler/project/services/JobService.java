@@ -30,6 +30,14 @@ public class JobService {
 	        );
 	}
 	
+	public List<Job> findAllWithAllCategories(List<String> categories){
+		if(categories==null || categories.isEmpty()) {
+			return repository.findAll();
+		}
+		
+		return repository.findAll(Specification.allOf(JobSpecifications.hasAllCategories(categories)));				
+	}
+	
 	public Job findById(Long id) {
 	 	Optional<Job> obj =  repository.findById(id);
 		return obj.get();

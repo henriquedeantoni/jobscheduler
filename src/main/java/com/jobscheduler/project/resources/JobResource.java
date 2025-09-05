@@ -1,5 +1,6 @@
 package com.jobscheduler.project.resources;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,32 @@ public class JobResource {
 	@Autowired
 	private JobService jobService;
 	
-	@GetMapping(value = "/search")
+	@GetMapping
 	public ResponseEntity<List<Job>> findAll(
-		@RequestParam(required = false) List<String> categories)  {
+		@RequestParam(required = false, name = "categories") String categoriesParam,  
+		@RequestParam(required = false, defaultValue = "any") String match) {
 
-		System.out.println("Categories recebidas no controller: " + categories);
-		
-		List<Job> list;
-        if (categories == null || categories.isEmpty()) {
-            list = jobService.findAll(null); 
-        } else {
-            list = jobService.findAll(categories);
-        }
-	    return ResponseEntity.ok().body(list);
+	        System.out.println("Raw categories recebidas: " + categoriesParam);
+	        System.out.println("Match mode: " + match);
+
+	        List<String> categories = null;
+	        if (categoriesParam != null && !categoriesParam.isEmpty()) {
+	            categories = Arrays.stream(categoriesParam.split(","))
+	                               .map(String::trim)
+	                               .filter(s -> !s.isEmpty())
+	                               .toList();
+	        }
+
+	        System.out.println("Categories convertidas: " + categories);
+
+	        List<Job> list;
+	        if ("all".equalsIgnoreCase(match)) {
+	            list = jobService.findAllWithAllCategories(categories); //AND
+	        } else {
+	            list = jobService.findAll(categories); //OR
+	        }
+
+	        return ResponseEntity.ok(list);
 	}
 	
 	@GetMapping(value = "/{id}")
