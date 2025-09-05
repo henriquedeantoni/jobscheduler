@@ -20,10 +20,19 @@ public class JobResource {
 	@Autowired
 	private JobService jobService;
 	
-	@GetMapping
-	public ResponseEntity<List<Job>> findAll(){
-		List<Job> list = jobService.findAll();
-		return ResponseEntity.ok().body(list);
+	@GetMapping(value = "/search")
+	public ResponseEntity<List<Job>> findAll(
+		@RequestParam(required = false) List<String> categories)  {
+
+		System.out.println("Categories recebidas no controller: " + categories);
+		
+		List<Job> list;
+        if (categories == null || categories.isEmpty()) {
+            list = jobService.findAll(null); 
+        } else {
+            list = jobService.findAll(categories);
+        }
+	    return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -31,12 +40,4 @@ public class JobResource {
 		Job job = jobService.findById(id);
 		return ResponseEntity.ok().body(job);
 	}
-	
-    @GetMapping(value = "/search")
-    public ResponseEntity<List<Job>> findAll(
-            @RequestParam(required = false) String category)  {
-
-        List<Job> list = jobService.search(category);
-        return ResponseEntity.ok().body(list);
-    }
 }

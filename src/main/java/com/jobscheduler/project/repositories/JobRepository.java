@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Job;
 
-public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificationExecutor {
+public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificationExecutor<Job> {
 }

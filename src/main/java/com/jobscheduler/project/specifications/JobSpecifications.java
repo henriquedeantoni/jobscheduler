@@ -1,5 +1,7 @@
 package com.jobscheduler.project.specifications;
 
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import com.jobscheduler.project.entities.Job;
@@ -8,12 +10,12 @@ import jakarta.persistence.criteria.Join;
 
 public class JobSpecifications {
 	
-	public static Specification<Job> hasCategory(String category) {
+	public static Specification<Job> hasCategories(List<String> categories) {
 		return (root, query, cb) ->
 		{
-			if(category == null) return null;
+			if(categories == null || categories.isEmpty()) return null;
 			Join<Object, Object> join = root.join("categories");
-			return cb.equal(join.get("name"), category);
+			return join.get("name").in(categories);
 		};
 	}
 }
