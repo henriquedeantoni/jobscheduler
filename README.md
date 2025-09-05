@@ -117,6 +117,87 @@ INNER JOIN TB_CATEGORY c ON jc.CATEGORY_ID = c.ID
 WHERE UPPER(c.NAME) IN ('TRAINING');
 ```
 
+## Endpoints
+
+### Job
+
+Url
+
+``` GET /jobs?categories=Training,Programming
+```
+Response:
+
+```
+[
+  {
+    "id": 2,
+    "title": "Software Support",
+    "description": "Nulla eu imperdit purus. Maecenas an.",
+    "duration": 16,
+    "price": 800,
+    "hourPrice": 50,
+    "location": "",
+    "categories": [
+      {
+        "id": 3,
+        "name": "Programming"
+      },
+      {
+        "id": 4,
+        "name": "Support"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Design Training",
+    "description": "Nam eleifend maximus tortor, at mols.",
+    "duration": 8,
+    "price": 600,
+    "hourPrice": 75,
+    "location": "",
+    "categories": [
+      {
+        "id": 2,
+        "name": "Training"
+      }
+    ]
+  }
+ ]
+
+```
+Url
+
+``` http://localhost:8080/jobs?categories=Training,Programming&match=all
+```
+Response
+
+```
+
+[
+  {
+    "id": 4,
+    "title": "CyberSecurity Training",
+    "description": "Donec aliquet odio ac roncus cursus.",
+    "duration": 24,
+    "price": 2160,
+    "hourPrice": 90,
+    "location": "",
+    "categories": [
+      {
+        "id": 2,
+        "name": "Training"
+      },
+      {
+        "id": 3,
+        "name": "Programming"
+      }
+    ]
+  }
+]
+
+```
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
