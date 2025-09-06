@@ -123,7 +123,8 @@ WHERE UPPER(c.NAME) IN ('TRAINING');
 
 Url
 
-``` GET /jobs?categories=Training,Programming
+```
+GET /jobs?categories=Training,Programming
 ```
 Response:
 
@@ -168,7 +169,8 @@ Response:
 ```
 Url
 
-``` http://localhost:8080/jobs?categories=Training,Programming&match=all
+```
+http://localhost:8080/jobs?categories=Training,Programming&match=all
 ```
 Response
 
