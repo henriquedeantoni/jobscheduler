@@ -116,7 +116,6 @@ public class Job implements Serializable {
 		return location;
 	}
 	
-	
 	@JsonIgnore
 	public Set<JobOrder> getJobOrders(){
 		Set<JobOrder> set = new HashSet<>();
