@@ -1,11 +1,16 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +26,10 @@ public class Client implements Serializable {
 	private String location;
 	private String ssn;
 	private String tin;
+	
+	@JsonIgnore
+	@OneToMany (mappedBy = "client")
+	private List<JobOrder> orders = new ArrayList<>();
 	
 	public Client() {
 	}
@@ -72,6 +81,10 @@ public class Client implements Serializable {
 
 	public void setTin(String tin) {
 		this.tin = tin;
+	}
+	
+	public List<JobOrder> getOrders(){
+		return orders;
 	}
 
 	@Override
