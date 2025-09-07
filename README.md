@@ -200,6 +200,30 @@ Response
 
 ```
 
+### Job Order
+
+Url
+
+```
+http://localhost:8080/job-orders/vendor?name=Ana%20Silva
+```
+
+Response:
+
+```
+[
+  {
+    "id": 4,
+    "moment": "2020-01-11T21:21:22Z",
+    "orderStatus": "DELIVERED",
+    "items": [],
+    "payment": null,
+    "total": 0
+  }
+]
+```
+
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

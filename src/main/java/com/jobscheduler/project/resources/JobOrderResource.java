@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.services.JobOrderService;
-import com.jobscheduler.project.services.exceptions.ResourceNotFoundException;
 
 @RestController
 @RequestMapping(value = "/job-orders")
@@ -29,15 +27,14 @@ public class JobOrderResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/id/{id}")
 	public ResponseEntity<JobOrder> findById(@PathVariable Long id){
 		JobOrder obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@GetMapping(value = "/user-name/{username}")
-	public ResponseEntity<List<JobOrder>> findByUser(
-			@RequestParam(required = false, name="vendor") String name){
+	@GetMapping(value = "/vendor")
+	public ResponseEntity<List<JobOrder>> findByUser(@RequestParam String name){
 
 		System.out.println("name received: " + name);
 		
