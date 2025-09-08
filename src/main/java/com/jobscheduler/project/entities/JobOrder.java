@@ -39,6 +39,11 @@ public class JobOrder implements Serializable {
 	@JoinColumn(name = "vendor_id")
 	private User vendor;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
+	
 	@OneToMany(mappedBy = "id.jobOrder")
 	private Set<OrderItem> items = new HashSet<>();
 	
@@ -48,12 +53,13 @@ public class JobOrder implements Serializable {
 	public JobOrder() {
 	}
 	
-	public JobOrder(Long id, Instant moment, OrderStatus orderStatus, User vendor) {
+	public JobOrder(Long id, Instant moment, OrderStatus orderStatus, User vendor, Client client) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		setOrderStatus(orderStatus);
 		this.vendor = vendor;
+		this.client = client;
+		setOrderStatus(orderStatus);
 	}
 
 	public Long getId() {
@@ -88,6 +94,14 @@ public class JobOrder implements Serializable {
 
 	public void setVendor(User vendor) {
 		this.vendor = vendor;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+	
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	public Set<OrderItem> getItems(){
