@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.jobscheduler.project.entities.Category;
+import com.jobscheduler.project.entities.Client;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.OrderItem;
@@ -16,6 +17,7 @@ import com.jobscheduler.project.entities.Payment;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
+import com.jobscheduler.project.repositories.ClientRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
 import com.jobscheduler.project.repositories.OrderItemRepository;
@@ -36,9 +38,12 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private JobRepository jobRepository;
-	
+
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,12 +62,19 @@ public class TestConfig implements CommandLineRunner {
 		User user4 = new User(null, "Carlos Santos", "carlosantosrp@gmail.com", "21997850123", "123qiud");
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
+
+		Client cli1 = new Client(null, "Dell Inc.", "Street 1", "932849324293", "");
+		Client cli2 = new Client(null, "Airplay Tech", "Blue Avenue", "87324283943", "");
+		Client cli3 = new Client(null, "John Doe", "Park Avenue", "", "39328479234");
+		Client cli4 = new Client(null, "Phill Collins", "Abbeyroad", "", "13124332552");
 		
-		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1);
-		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2);
-		JobOrder jo3 = new JobOrder(null, Instant.parse("2019-07-22T21:21:22Z"), OrderStatus.DELIVERED, user1); 
-		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3);  
-		JobOrder jo5 = new JobOrder(null, Instant.parse("2020-08-05T21:21:22Z"), OrderStatus.PAYMENT_ONAPPROVAL, user4); 
+		clientRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4));
+		
+		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1, cli1);
+		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2, cli2);
+		JobOrder jo3 = new JobOrder(null, Instant.parse("2019-07-22T21:21:22Z"), OrderStatus.DELIVERED, user1, cli3); 
+		JobOrder jo4 = new JobOrder(null, Instant.parse("2020-01-11T21:21:22Z"), OrderStatus.DELIVERED, user3, cli4);  
+		JobOrder jo5 = new JobOrder(null, Instant.parse("2020-08-05T21:21:22Z"), OrderStatus.PAYMENT_ONAPPROVAL, user4, cli4); 
 		
 		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3, jo4));
 		
