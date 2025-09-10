@@ -47,18 +47,6 @@ public class UserService {
 		}
 	}	
 	
-	/*
-	 * 
-	public void delete(Long id) {
-		try {
-		repository.deleteById(id);	
-		} catch (RuntimeException e){
-			e.printStackTrace();
-		}
-	}
-	 * 
-	 */
-	
 	public User update(Long id, User user) {
 		try {
 			User entity = repository.getReferenceById(id);
@@ -85,6 +73,16 @@ public class UserService {
 			if(entity.getUserStatus() != UserStatus.INACTIVE) {
 				entity.setUserStatus(userStatus);
 			}
+			return repository.save(entity);
+		} catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(e.getMessage());
+		}
+	}
+	
+	public User findByEmail(String email) {
+		System.out.println("email in service :" + email);
+		try {
+			User entity = repository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException(email));
 			return repository.save(entity);
 		} catch(EntityNotFoundException e) {
 			throw new ResourceNotFoundException(e.getMessage());
