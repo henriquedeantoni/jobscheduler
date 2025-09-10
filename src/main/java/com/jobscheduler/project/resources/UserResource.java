@@ -40,6 +40,13 @@ public class UserResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@GetMapping(value = "/email/{email}")
+	public ResponseEntity<User> findByEmail(@PathVariable String email){
+		System.out.println("email in resource :" + email);
+		User obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@PostMapping
 	public ResponseEntity<User> insert(@RequestBody User user){
 		user = service.insert(user);
