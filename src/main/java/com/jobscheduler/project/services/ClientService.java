@@ -42,4 +42,9 @@ public class ClientService {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
+	
+	public List<Client> findClientByContains(String likeName){
+		System.out.println("partialName on services: " +  likeName);
+		return repository.findByNameContainingIgnoreCase(likeName);
+	}
 }
