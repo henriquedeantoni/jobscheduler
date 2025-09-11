@@ -18,7 +18,7 @@ import com.jobscheduler.project.entities.Client;
 import com.jobscheduler.project.services.ClientService;
 
 @RestController
-@RequestMapping(value="/client")
+@RequestMapping(value="/clients")
 public class ClientResource {
 
 	@Autowired
@@ -34,6 +34,13 @@ public class ClientResource {
 	public ResponseEntity<Client> findById(@PathVariable Long id){
 		Client client = clientService.findById(id);
 		return ResponseEntity.ok().body(client);
+	}
+	
+	@GetMapping(value="/name/{partialName}")
+	public ResponseEntity<List<Client>> findClientByContains(@PathVariable String partialName){
+		System.out.println("partialName on resources: " +  partialName);
+		List<Client> clients = clientService.findClientByContains(partialName);
+		return ResponseEntity.ok().body(clients);
 	}
 	
 	@PostMapping
