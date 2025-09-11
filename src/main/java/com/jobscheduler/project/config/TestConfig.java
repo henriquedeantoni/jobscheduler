@@ -67,8 +67,9 @@ public class TestConfig implements CommandLineRunner {
 		Client cli2 = new Client(null, "Airplay Tech", "Blue Avenue", "87324283943", "");
 		Client cli3 = new Client(null, "John Doe", "Park Avenue", "", "39328479234");
 		Client cli4 = new Client(null, "Phill Collins", "Abbeyroad", "", "13124332552");
+		Client cli5 = new Client(null, "Frank Zappa", "Street 2 ", "", "461523465");
 		
-		clientRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4));
+		clientRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4, cli5));
 		
 		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1, cli1);
 		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2, cli2);

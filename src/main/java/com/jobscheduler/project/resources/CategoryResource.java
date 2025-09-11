@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jobscheduler.project.entities.Category;
+import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.services.CategoryService;
 
 @RestController
@@ -34,7 +35,7 @@ public class CategoryResource {
 		Category category = categoryService.findById(id);
 		return ResponseEntity.ok().body(category);
 	}
-	
+		
 	@PostMapping
 	public ResponseEntity<Category> insert(@RequestBody Category category){
 		category = categoryService.insert(category);
