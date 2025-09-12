@@ -12,6 +12,7 @@ import com.jobscheduler.project.entities.Category;
 import com.jobscheduler.project.entities.Client;
 import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
+import com.jobscheduler.project.entities.Location;
 import com.jobscheduler.project.entities.OrderItem;
 import com.jobscheduler.project.entities.Payment;
 import com.jobscheduler.project.entities.User;
@@ -20,6 +21,7 @@ import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.ClientRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
+import com.jobscheduler.project.repositories.LocationRepository;
 import com.jobscheduler.project.repositories.OrderItemRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
@@ -45,6 +47,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ClientRepository clientRepository;
 	
+	@Autowired
+	private LocationRepository locationRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -63,11 +68,19 @@ public class TestConfig implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
 
-		Client cli1 = new Client(null, "Dell Inc.", "Street 1", "932849324293", "");
-		Client cli2 = new Client(null, "Airplay Tech", "Blue Avenue", "87324283943", "");
-		Client cli3 = new Client(null, "John Doe", "Park Avenue", "", "39328479234");
-		Client cli4 = new Client(null, "Phill Collins", "Abbeyroad", "", "13124332552");
-		Client cli5 = new Client(null, "Frank Zappa", "Street 2 ", "", "461523465");
+		Location loc1 = new Location(null, "Street 34th", "456", "Jacaranda Alameda", "North Carolina", "next to Mc Donalds", "Saint Leo", "40042120");
+		Location loc2 = new Location(null, "Street 17th", "125", "Downtown", "North Carolina", "opposite St Lourdes Churh", "Saint Leo", "40042510");
+		Location loc3 = new Location(null, "Principal Avenue", "52", "", "North Carolina", "next to Mc Donalds", "Saint Leo", "40043010");
+		Location loc4 = new Location(null, "Palm road", "132", "Palm Springs", "California", "", "Los Angeles", "10142200");
+		Location loc5 = new Location(null, "Street 8th", "140", "Downtown", "California", "", "Los Angeles", "12045210");
+		
+		locationRepository.saveAll(Arrays.asList(loc1, loc2, loc3, loc4, loc5));
+		
+		Client cli1 = new Client(null, "Dell Inc.", loc1, "932849324293", "");
+		Client cli2 = new Client(null, "Airplay Tech", loc2, "87324283943", "");
+		Client cli3 = new Client(null, "John Doe", loc3, "", "39328479234");
+		Client cli4 = new Client(null, "Phill Collins", loc4, "", "13124332552");
+		Client cli5 = new Client(null, "Frank Zappa", loc5, "", "461523465");
 		
 		clientRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4, cli5));
 		
