@@ -6,11 +6,13 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,7 +25,6 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String location;
 	private String ssn;
 	private String tin;
 	
@@ -31,10 +32,13 @@ public class Client implements Serializable {
 	@OneToMany (mappedBy = "client")
 	private List<JobOrder> orders = new ArrayList<>();
 	
+	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+	private Location location;
+	
 	public Client() {
 	}
 	
-	public Client(Long id, String name, String location, String ssn, String tin) {
+	public Client(Long id, String name, Location location, String ssn, String tin) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,11 +63,11 @@ public class Client implements Serializable {
 		this.name = name;
 	}
 
-	public String getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
