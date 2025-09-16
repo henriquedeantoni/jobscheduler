@@ -28,5 +28,12 @@ public class LocationService {
 		return locationRepository.save(location);
 	}
 	
+	public List<Location> findLocationByState(String stateName){
+		return locationRepository.findByState(stateName);
+	}
+	
+	public List<Location> findLocationsByCity(String cityName){
+		return locationRepository.findByCity(cityName);
+	}
 	
 }
