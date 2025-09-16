@@ -36,6 +36,18 @@ public class LocationResource {
 		return ResponseEntity.ok().body(location);
 	}
 	
+	@GetMapping(value="/state/{stateName}")
+	public ResponseEntity<List<Location>> findByState(@PathVariable String stateName){
+		List<Location> locations = locationService.findLocationByState(stateName);
+		return ResponseEntity.ok(locations);
+	}
+	
+	@GetMapping(value="/city/{cityName}")
+	public ResponseEntity<List<Location>> findByCity(@PathVariable String cityName){
+		List<Location> locations = locationService.findLocationByState(cityName);
+		return ResponseEntity.ok(locations);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Location> insert(@RequestBody Location location){
 		location = locationService.insert(location);

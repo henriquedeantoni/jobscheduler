@@ -37,6 +37,20 @@ public class JobService {
 		
 		return repository.findAll(Specification.allOf(JobSpecifications.hasAllCategories(categories)));				
 	}
+
+	public List<Job> findJobByDurationGreaterThan(Integer minDuration){
+		if(minDuration == null || minDuration < 0) {
+			throw new IllegalArgumentException("Duration value must be greather than zero.");
+		}
+		return repository.findByDurationGreaterThan(minDuration);
+	}
+	
+	public List<Job> findJobByDurationLowerThan(Integer maxDuration){
+		if(maxDuration == null || maxDuration < 0) {
+			throw new IllegalArgumentException("Duration value must be lower than zero.");
+		}
+		return repository.findByDurationLowerThan(maxDuration);
+	}
 	
 	public Job findById(Long id) {
 	 	Optional<Job> obj =  repository.findById(id);
