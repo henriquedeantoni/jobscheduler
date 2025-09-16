@@ -38,7 +38,6 @@ public class ClientResource {
 	
 	@GetMapping(value="/name/{partialName}")
 	public ResponseEntity<List<Client>> findClientByContains(@PathVariable String partialName){
-		System.out.println("partialName on resources: " +  partialName);
 		List<Client> clients = clientService.findClientByContains(partialName);
 		return ResponseEntity.ok().body(clients);
 	}

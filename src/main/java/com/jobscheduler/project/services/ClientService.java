@@ -44,7 +44,6 @@ public class ClientService {
 	}
 	
 	public List<Client> findClientByContains(String likeName){
-		System.out.println("partialName on services: " +  likeName);
 		return repository.findByNameContainingIgnoreCase(likeName);
 	}
 }
