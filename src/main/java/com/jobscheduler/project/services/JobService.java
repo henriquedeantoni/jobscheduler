@@ -45,11 +45,11 @@ public class JobService {
 		return repository.findByDurationGreaterThan(minDuration);
 	}
 	
-	public List<Job> findJobByDurationLowerThan(Integer maxDuration){
+	public List<Job> findJobByDurationLessThan(Integer maxDuration){
 		if(maxDuration == null || maxDuration < 0) {
 			throw new IllegalArgumentException("Duration value must be lower than zero.");
 		}
-		return repository.findByDurationLowerThan(maxDuration);
+		return repository.findByDurationLessThan(maxDuration);
 	}
 	
 	public Job findById(Long id) {

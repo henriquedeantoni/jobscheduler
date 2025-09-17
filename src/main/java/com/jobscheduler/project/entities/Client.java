@@ -32,15 +32,14 @@ public class Client implements Serializable {
 	@OneToMany (mappedBy = "client")
 	private List<JobOrder> orders = new ArrayList<>();
 	
-	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "client")
 	private Location location;
 	
 	public Client() {
 	}
 	
-	public Client(Long id, String name, Location location, String ssn, String tin) {
+	public Client( String name, Location location, String ssn, String tin) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.ssn = ssn;

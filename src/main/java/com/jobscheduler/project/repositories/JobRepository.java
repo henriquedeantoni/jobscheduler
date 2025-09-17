@@ -10,5 +10,5 @@ import com.jobscheduler.project.entities.Job;
 
 public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificationExecutor<Job> {
 	List<Job> findByDurationGreaterThan(Integer minDuration);	
-	List<Job> findByDurationLowerThan(Integer maxDuration);
+	List<Job> findByDurationLessThan(Integer maxDuration);
 }

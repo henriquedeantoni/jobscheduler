@@ -62,8 +62,8 @@ public class JobResource {
 	}
 	
 	@GetMapping(value = "/duration/lower={value}")
-	public ResponseEntity<List<Job>> findByDurationLowerThan(@PathVariable Integer value){
-		List<Job> jobs = jobService.findJobByDurationLowerThan(value);
+	public ResponseEntity<List<Job>> findByDurationLessThan(@PathVariable Integer value){
+		List<Job> jobs = jobService.findJobByDurationLessThan(value);
 		return ResponseEntity.ok(jobs);
 	}
 }
