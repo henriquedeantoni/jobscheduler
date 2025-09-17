@@ -1,6 +1,7 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,12 +21,12 @@ public class Supply implements Serializable {
 	private String name;
 	private String description;
 	private String codeReference;
-	private Double cost;
+	private BigDecimal cost;
 	
 	public Supply() {
 	}
 	
-	public Supply(Long id, String name, String description, String codeReference, Double cost) {
+	public Supply(Long id, String name, String description, String codeReference, BigDecimal cost) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,11 +67,11 @@ public class Supply implements Serializable {
 		this.codeReference = codeReference;
 	}
 
-	public Double getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
 
-	public void setCost(Double cost) {
+	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
 
