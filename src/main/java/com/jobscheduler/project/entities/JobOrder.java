@@ -1,6 +1,7 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -116,10 +117,10 @@ public class JobOrder implements Serializable {
 		this.payment = payment;
 	}
 
-	public Double getTotal() {
-		double sum = 0.0;
+	public BigDecimal getTotal() {
+		BigDecimal sum = new BigDecimal(0);
 		for(OrderItem o: items) {
-			sum += o.getSubTotal();
+			sum = sum.add(o.getSubTotal());
 		}
 		return sum;
 	}

@@ -1,6 +1,7 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,8 +29,8 @@ public class Job implements Serializable {
 	private String title;
 	private String description;
 	private Integer duration;
-	private Double price;
-	private Double hourPrice;
+	private BigDecimal price;
+	private BigDecimal hourPrice;
 	private String location;
 	
 	@ManyToMany
@@ -45,7 +46,7 @@ public class Job implements Serializable {
 	public Job() {
 	}
 
-	public Job(Long id, String title, String description, Integer duration, Double price, Double hourPrice, String location) {
+	public Job(Long id, String title, String description, Integer duration, BigDecimal price, BigDecimal hourPrice, String location) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -88,19 +89,19 @@ public class Job implements Serializable {
 		this.duration = duration;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
-	public Double getHourPrice() {
+	public BigDecimal getHourPrice() {
 		return hourPrice;
 	}
 
-	public void setHourPrice(Double hourPrice) {
+	public void setHourPrice(BigDecimal hourPrice) {
 		this.hourPrice = hourPrice;
 	}
 	

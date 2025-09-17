@@ -1,5 +1,6 @@
 package com.jobscheduler.project.config;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Arrays;
 
@@ -92,12 +93,12 @@ public class TestConfig implements CommandLineRunner {
 		
 		jobOrderRepository.saveAll(Arrays.asList(jo1, jo2, jo3, jo4));
 		
-		Job j1 = new Job(null, "Web Maintenance", "Lorem ipsum dolor sit amet, consect.", 8, 400.00, 50.00, ""); 
-		Job j2 = new Job(null, "Software Support", "Nulla eu imperdit purus. Maecenas an.", 16, 800.00, 50.00, ""); 
-		Job j3 = new Job(null, "Design Training", "Nam eleifend maximus tortor, at mols.", 8, 600.00, 75.00, ""); 
-		Job j4 = new Job(null, "CyberSecurity Training", "Donec aliquet odio ac roncus cursus.", 24, 2160.00, 90.00, ""); 
-		Job j5 = new Job(null, "Software creation", "Cras fringilla convalis sem vel faucbus.", 80, 6400.00, 80.00, "");
-		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, 13800.00, 115.00, "");
+		Job j1 = new Job(null, "Web Maintenance", "Lorem ipsum dolor sit amet, consect.", 8, new BigDecimal(400.00) , new BigDecimal(50.00), ""); 
+		Job j2 = new Job(null, "Software Support", "Nulla eu imperdit purus. Maecenas an.", 16, new BigDecimal(800.00), new BigDecimal(50.00), ""); 
+		Job j3 = new Job(null, "Design Training", "Nam eleifend maximus tortor, at mols.", 8, new BigDecimal(600.00), new BigDecimal(75.00), ""); 
+		Job j4 = new Job(null, "CyberSecurity Training", "Donec aliquet odio ac roncus cursus.", 24, new BigDecimal(2160.00), new BigDecimal(90.00), ""); 
+		Job j5 = new Job(null, "Software creation", "Cras fringilla convalis sem vel faucbus.", 80, new BigDecimal(6400.00), new BigDecimal(80.00), "");
+		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, new BigDecimal(13800.00), new BigDecimal(115.00), "");
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
 		

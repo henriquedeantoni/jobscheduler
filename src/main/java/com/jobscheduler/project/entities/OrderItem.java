@@ -1,6 +1,7 @@
 package com.jobscheduler.project.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jobscheduler.project.entities.pk.OrderItemPK;
@@ -19,12 +20,12 @@ public class OrderItem implements Serializable {
 	private OrderItemPK id = new OrderItemPK();
 	
 	private Integer quantity;
-	private Double price;
+	private BigDecimal price;
 	
 	public OrderItem() {
 	}
 
-	public OrderItem(JobOrder jobOrder, Job job, Integer quantity, Double price) {
+	public OrderItem(JobOrder jobOrder, Job job, Integer quantity, BigDecimal price) {
 		super();
 		id.setJobOrder(jobOrder);
 		id.setJob(job);
@@ -57,16 +58,16 @@ public class OrderItem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	
-	public Double getSubTotal() {
-		return price * quantity;
+	public BigDecimal getSubTotal() {
+		return price.multiply(new BigDecimal(quantity));
 	}
 
 	@Override
