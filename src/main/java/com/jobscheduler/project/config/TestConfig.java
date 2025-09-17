@@ -69,21 +69,34 @@ public class TestConfig implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
 
-		Location loc1 = new Location(null, "Street 34th", "456", "Jacaranda Alameda", "North Carolina", "next to Mc Donalds", "Saint Leo", "40042120");
-		Location loc2 = new Location(null, "Street 17th", "125", "Downtown", "North Carolina", "opposite St Lourdes Churh", "Saint Leo", "40042510");
-		Location loc3 = new Location(null, "Principal Avenue", "52", "", "North Carolina", "next to Mc Donalds", "Saint Leo", "40043010");
-		Location loc4 = new Location(null, "Palm road", "132", "Palm Springs", "California", "", "Los Angeles", "10142200");
-		Location loc5 = new Location(null, "Street 8th", "140", "Downtown", "California", "", "Los Angeles", "12045210");
+		Location loc1 = new Location("Street 34th", "456", "Jacaranda Alameda", "North Carolina", "next to Mc Donalds", "Saint Leo", "40042120");
+		Location loc2 = new Location("Street 17th", "125", "Downtown", "North Carolina", "opposite St Lourdes Churh", "Saint Leo", "40042510");
+		Location loc3 = new Location("Principal Avenue", "52", "", "North Carolina", "next to Mc Donalds", "Saint Leo", "40043010");
+		Location loc4 = new Location("Palm road", "132", "Palm Springs", "California", "", "Los Angeles", "10142200");
+		Location loc5 = new Location("Street 8th", "140", "Downtown", "California", "", "Los Angeles", "12045210");
 		
 		locationRepository.saveAll(Arrays.asList(loc1, loc2, loc3, loc4, loc5));
 		
-		Client cli1 = new Client(null, "Dell Inc.", loc1, "932849324293", "");
-		Client cli2 = new Client(null, "Airplay Tech", loc2, "87324283943", "");
-		Client cli3 = new Client(null, "John Doe", loc3, "", "39328479234");
-		Client cli4 = new Client(null, "Phill Collins", loc4, "", "13124332552");
-		Client cli5 = new Client(null, "Frank Zappa", loc5, "", "461523465");
+		Client cli1 = new Client("Dell Inc.", loc1, "932849324293", "");
+		Client cli2 = new Client("Airplay Tech", loc2, "87324283943", "");
+		Client cli3 = new Client("John Doe", loc3, "", "39328479234");
+		Client cli4 = new Client("Phill Collins", loc4, "", "13124332552");
+		Client cli5 = new Client("Frank Zappa", loc5, "", "461523465");
+		
+		loc1.setClient(cli1);
+		loc2.setClient(cli2);
+		loc3.setClient(cli3);
+		loc4.setClient(cli4);
+		loc5.setClient(cli5);
+		
+		cli1.setLocation(loc1);
+		cli2.setLocation(loc2);
+		cli3.setLocation(loc3);
+		cli4.setLocation(loc4);
+		cli5.setLocation(loc5);
 		
 		clientRepository.saveAll(Arrays.asList(cli1, cli2, cli3, cli4, cli5));
+		locationRepository.saveAll(Arrays.asList(loc1, loc2, loc3, loc4, loc5));
 		
 		JobOrder jo1 = new JobOrder(null, Instant.parse("2019-06-20T19:15:07Z"), OrderStatus.PAYMENT_CONCLUDED, user1, cli1);
 		JobOrder jo2 = new JobOrder(null, Instant.parse("2019-07-21T04:32:10Z"), OrderStatus.PAYMENT_CONCLUDED, user2, cli2);

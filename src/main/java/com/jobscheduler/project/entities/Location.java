@@ -29,7 +29,6 @@ public class Location implements Serializable {
 	private String city;
 	private String postalCode;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
@@ -38,7 +37,6 @@ public class Location implements Serializable {
 	}
 
 	public Location(
-			Long id, 
 			String street, 
 			String number, 
 			String county, 
@@ -48,7 +46,6 @@ public class Location implements Serializable {
 			String postalCode) {
 		
 		super();
-		this.id = id;
 		this.street = street;
 		this.number = number;
 		this.county = county;
@@ -127,7 +124,7 @@ public class Location implements Serializable {
 		return client;
 	}
 	
-	public void setClient() {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 
