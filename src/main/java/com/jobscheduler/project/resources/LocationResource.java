@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -45,6 +46,12 @@ public class LocationResource {
 	@GetMapping(value="/city/{cityName}")
 	public ResponseEntity<List<Location>> findByCity(@PathVariable String cityName){
 		List<Location> locations = locationService.findLocationByState(cityName);
+		return ResponseEntity.ok(locations);
+	}
+	
+	@GetMapping(value="/postalcode")
+	public ResponseEntity<List<Location>> findByPostalCodeContaining(@RequestParam String segment){
+		List<Location> locations = locationService.findLocationsByPostalCodeContaining(segment);
 		return ResponseEntity.ok(locations);
 	}
 	

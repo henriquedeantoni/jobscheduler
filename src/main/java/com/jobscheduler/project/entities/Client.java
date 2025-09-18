@@ -25,8 +25,8 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String ssn;
-	private String tin;
+	private String ssnNumber;
+	private String tinNumber;
 	
 	@JsonIgnore
 	@OneToMany (mappedBy = "client")
@@ -38,12 +38,12 @@ public class Client implements Serializable {
 	public Client() {
 	}
 	
-	public Client( String name, Location location, String ssn, String tin) {
+	public Client( String name, Location location, String ssnNumber, String tinNumber) {
 		super();
 		this.name = name;
 		this.location = location;
-		this.ssn = ssn;
-		this.tin = tin;
+		this.ssnNumber = ssnNumber;
+		this.tinNumber = tinNumber;
 	}
 	
 	public Long getId() {
@@ -70,20 +70,20 @@ public class Client implements Serializable {
 		this.location = location;
 	}
 
-	public String getSsn() {
-		return ssn;
+	public String getSsnNumber() {
+		return ssnNumber;
 	}
 
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
+	public void setSsnNumber(String ssnNumber) {
+		this.ssnNumber = ssnNumber;
 	}
 
-	public String getTin() {
-		return tin;
+	public String getTinNumber() {
+		return tinNumber;
 	}
 
-	public void setTin(String tin) {
-		this.tin = tin;
+	public void setTinNumber(String tinNumber) {
+		this.tinNumber = tinNumber;
 	}
 	
 	public List<JobOrder> getOrders(){

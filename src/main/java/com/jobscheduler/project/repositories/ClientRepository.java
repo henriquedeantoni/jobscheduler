@@ -8,4 +8,6 @@ import com.jobscheduler.project.entities.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 	List<Client> findByNameContainingIgnoreCase(String partialName);
+	List<Client> findBySsnNumberContainingIgnoreCase(String ssn);
+	List<Client> findByTinNumberContainingIgnoreCase(String tin);
 }
