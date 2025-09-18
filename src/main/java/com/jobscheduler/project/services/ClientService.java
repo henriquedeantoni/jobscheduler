@@ -46,4 +46,20 @@ public class ClientService {
 	public List<Client> findClientByContains(String likeName){
 		return repository.findByNameContainingIgnoreCase(likeName);
 	}
+	
+	public List<Client> findClientBySsnNumberContains(String segmentSsn){
+		if(!segmentSsn.matches("\\d")) {
+			return repository.findBySsnNumberContainingIgnoreCase(segmentSsn);
+		} else {
+			throw new IllegalArgumentException("SSN number must have only digits");
+		}
+	}
+	
+	public List<Client> findClientByTinNumberContains(String segmentTin){
+		if(!segmentTin.matches("\\d")) {
+			return repository.findBySsnNumberContainingIgnoreCase(segmentTin);
+		} else {
+			throw new IllegalArgumentException("TIN number must have only digits");
+		}
+	}
 }

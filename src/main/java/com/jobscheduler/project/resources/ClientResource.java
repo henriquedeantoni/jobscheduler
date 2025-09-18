@@ -42,6 +42,18 @@ public class ClientResource {
 		return ResponseEntity.ok().body(clients);
 	}
 	
+	@GetMapping(value="/ssn/{segment}")
+	public ResponseEntity<List<Client>> findBySsnNumberContainingIgnoreCase(@PathVariable String segment){
+		List<Client> clients = clientService.findClientBySsnNumberContains(segment);
+		return ResponseEntity.ok().body(clients);
+	}
+	
+	@GetMapping(value="/tin/{segment}")
+	public ResponseEntity<List<Client>> findByTinNumberContainingIgnoreCase(@PathVariable String segment){
+		List<Client> clients = clientService.findClientByTinNumberContains(segment);
+		return ResponseEntity.ok().body(clients);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Client> insert(@RequestBody Client client){
 		client = clientService.insert(client);

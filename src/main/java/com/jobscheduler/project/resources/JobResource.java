@@ -26,9 +26,6 @@ public class JobResource {
 		@RequestParam(required = false, name = "categories") String categoriesParam,  
 		@RequestParam(required = false, defaultValue = "any") String match) {
 
-	        System.out.println("Raw categories recebidas: " + categoriesParam);
-	        System.out.println("Match mode: " + match);
-
 	        List<String> categories = null;
 	        if (categoriesParam != null && !categoriesParam.isEmpty()) {
 	            categories = Arrays.stream(categoriesParam.split(","))
@@ -36,8 +33,6 @@ public class JobResource {
 	                               .filter(s -> !s.isEmpty())
 	                               .toList();
 	        }
-
-	        System.out.println("Categories convertidas: " + categories);
 
 	        List<Job> list;
 	        if ("all".equalsIgnoreCase(match)) {

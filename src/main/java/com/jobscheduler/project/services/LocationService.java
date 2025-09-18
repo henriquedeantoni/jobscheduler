@@ -32,8 +32,15 @@ public class LocationService {
 		return locationRepository.findByState(stateName);
 	}
 	
+	public List<Location> findLocationsByPostalCodeContaining(String segment){
+		if(segment.matches("\\d")) {
+			return locationRepository.findByPostalCodeContainingIgnoreCase(segment);
+		} else {
+			throw new IllegalArgumentException("Postal code must have only digits");
+		}
+	}
+	
 	public List<Location> findLocationsByCity(String cityName){
 		return locationRepository.findByCity(cityName);
 	}
-	
 }
