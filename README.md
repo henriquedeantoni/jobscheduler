@@ -258,6 +258,61 @@ Response:
 }
 ```
 
+url
+
+```
+http://localhost:8080/clients/name/{nameSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/name/dell
+```
+
+Response:
+
+
+```
+[
+    {
+        "id": 1,
+        "name": "Dell Inc.",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    }
+]
+```
+
+url
+
+```
+http://localhost:8080/clients/ssn/{ssnSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/ssn/849324
+```
+
+Response:
+
+
+```
+[
+  {
+    "id": 1,
+    "name": "Dell Inc.",
+    "ssnNumber": "932849324293",
+    "tinNumber": ""
+  }
+]
+```
+
+
+
+
 
 ### Job
 
