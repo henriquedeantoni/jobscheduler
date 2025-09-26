@@ -177,6 +177,87 @@ Response:
 ```
 
 
+### Client
+
+[GET]
+
+url
+
+```
+http://localhost:8080/clients
+```
+
+Response:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Dell Inc.",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    },
+    {
+        "id": 2,
+        "name": "Airplay Tech",
+        "ssnNumber": "87324283943",
+        "tinNumber": ""
+    },
+    {
+        "id": 3,
+        "name": "John Doe",
+        "ssnNumber": "",
+        "tinNumber": "39328479234"
+    },
+    {
+        "id": 4,
+        "name": "Phill Collins",
+        "ssnNumber": "",
+        "tinNumber": "13124332552"
+    },
+    {
+        "id": 5,
+        "name": "Frank Zappa",
+        "ssnNumber": "",
+        "tinNumber": "461523465"
+    }
+]
+```
+
+url
+
+```
+http://localhost:8080/clients/{id}
+```
+
+Response:
+
+```
+{
+    "id": 4,
+    "name": "Phill Collins",
+    "ssnNumber": "",
+    "tinNumber": "13124332552"
+}
+```
+
+url
+
+```
+http://localhost:8080/clients/2
+```
+
+Response:
+
+```
+{
+    "id": 2,
+    "name": "Airplay Tech",
+    "ssnNumber": "87324283943",
+    "tinNumber": ""
+}
+```
+
 
 ### Job
 
@@ -185,6 +266,7 @@ Url
 ```
 GET /jobs?categories=Training,Programming
 ```
+
 Response:
 
 ```
@@ -258,6 +340,31 @@ Response
 ]
 
 ```
+
+* [POST]
+
+Url
+
+```
+http://localhost:8080/categories
+```
+Body
+
+```
+{
+ "name": "Sales"
+} 
+```
+
+Response
+
+```
+{
+    "id": 6,
+    "name": "Sales"
+}
+```
+
 
 ### Job Order
 
