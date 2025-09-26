@@ -48,6 +48,9 @@ public class JobOrder implements Serializable {
 	@OneToMany(mappedBy = "id.jobOrder")
 	private Set<OrderItem> items = new HashSet<>();
 	
+	@OneToMany(mappedBy = "id.jobOrder")
+	private Set<OrderSupply> supplies = new HashSet<>();
+	
 	@OneToOne(mappedBy = "jobOrder", cascade = CascadeType.ALL)
 	private Payment payment;
 	
@@ -107,7 +110,11 @@ public class JobOrder implements Serializable {
 
 	public Set<OrderItem> getItems(){
 		return items;
-	}	
+	}
+	
+	public Set<OrderSupply> getSupplies(){
+		return supplies;
+	}
 	
 	public Payment getPayment() {
 		return payment;
@@ -121,6 +128,9 @@ public class JobOrder implements Serializable {
 		BigDecimal sum = new BigDecimal(0);
 		for(OrderItem o: items) {
 			sum = sum.add(o.getSubTotal());
+		}
+		for(OrderSupply s: supplies) {
+			sum = sum.add(s.getSubTotal());
 		}
 		return sum;
 	}
