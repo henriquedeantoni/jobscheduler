@@ -119,6 +119,65 @@ WHERE UPPER(c.NAME) IN ('TRAINING');
 
 ## Endpoints
 
+### Category
+
+* [GET]
+
+url
+
+```
+http://localhost:8080/categories
+```
+
+Response:
+
+```
+[
+  {
+    "id": 1,
+    "name": "Maintenance"
+  },
+  {
+    "id": 2,
+    "name": "Training"
+  },
+  {
+    "id": 3,
+    "name": "Programming"
+  },
+  {
+    "id": 4,
+    "name": "Support"
+  },
+  {
+    "id": 5,
+    "name": "Projects"
+  }
+]
+```
+
+url
+
+```
+http://localhost:8080/categories/{id}
+```
+example:
+
+```
+http://localhost:8080/categories/1
+```
+
+Response:
+
+```
+{
+  "id": 1,
+  "name": "Maintenance"
+}
+```
+
+
+
 ### Job
 
 Url
