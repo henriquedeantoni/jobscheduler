@@ -30,7 +30,14 @@ public class ClientService {
 	}
 	
 	public Client insert(Client obj) {
-		return repository.save(obj);
+		
+		if (!obj.getSsnNumber().isEmpty() && !obj.getTinNumber().isEmpty()) {
+			throw new IllegalArgumentException("client must have ssn number or tin number.");
+		} else if (obj.getSsnNumber().isEmpty() && obj.getTinNumber().isEmpty()) {
+			throw new IllegalArgumentException("client ssn number and tin number cannot be both empty.");
+		} else {
+			return repository.save(obj);
+		}
 	}
 	
 	public void delete(Long id) {

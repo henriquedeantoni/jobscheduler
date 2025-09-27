@@ -311,6 +311,51 @@ Response:
 ```
 
 
+url
+
+```
+http://localhost:8080/clients/tin/{tinSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/tin/93
+```
+
+Response:
+
+
+```
+[
+  {
+    "id": 1,
+    "name": "Dell Inc.",
+    "ssnNumber": "932849324293",
+    "tinNumber": ""
+  }
+]
+```
+
+[POST]
+
+
+url
+
+```
+http://localhost:8080/clients/tin/{tinSegment}
+```
+
+Response:
+
+
+```
+    {
+        "name": "Pizza Planet",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    }
+```
 
 
 
