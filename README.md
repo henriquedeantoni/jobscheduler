@@ -337,17 +337,19 @@ Response:
 ]
 ```
 
+
+
+
 [POST]
 
 
 url
 
 ```
-http://localhost:8080/clients/tin/{tinSegment}
+http://localhost:8080/clients
 ```
 
-Response:
-
+Request Body:
 
 ```
     {
