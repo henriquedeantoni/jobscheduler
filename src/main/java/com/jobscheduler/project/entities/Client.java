@@ -32,6 +32,7 @@ public class Client implements Serializable {
 	@OneToMany (mappedBy = "client")
 	private List<JobOrder> orders = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "client")
 	private Location location;
 	

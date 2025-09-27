@@ -119,6 +119,248 @@ WHERE UPPER(c.NAME) IN ('TRAINING');
 
 ## Endpoints
 
+### Category
+
+* [GET]
+
+url
+
+```
+http://localhost:8080/categories
+```
+
+Response:
+
+```
+[
+  {
+    "id": 1,
+    "name": "Maintenance"
+  },
+  {
+    "id": 2,
+    "name": "Training"
+  },
+  {
+    "id": 3,
+    "name": "Programming"
+  },
+  {
+    "id": 4,
+    "name": "Support"
+  },
+  {
+    "id": 5,
+    "name": "Projects"
+  }
+]
+```
+
+url
+
+```
+http://localhost:8080/categories/{id}
+```
+example:
+
+```
+http://localhost:8080/categories/1
+```
+
+Response:
+
+```
+{
+  "id": 1,
+  "name": "Maintenance"
+}
+```
+
+
+### Client
+
+[GET]
+
+url
+
+```
+http://localhost:8080/clients
+```
+
+Response:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Dell Inc.",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    },
+    {
+        "id": 2,
+        "name": "Airplay Tech",
+        "ssnNumber": "87324283943",
+        "tinNumber": ""
+    },
+    {
+        "id": 3,
+        "name": "John Doe",
+        "ssnNumber": "",
+        "tinNumber": "39328479234"
+    },
+    {
+        "id": 4,
+        "name": "Phill Collins",
+        "ssnNumber": "",
+        "tinNumber": "13124332552"
+    },
+    {
+        "id": 5,
+        "name": "Frank Zappa",
+        "ssnNumber": "",
+        "tinNumber": "461523465"
+    }
+]
+```
+
+url
+
+```
+http://localhost:8080/clients/{id}
+```
+
+Response:
+
+```
+{
+    "id": 4,
+    "name": "Phill Collins",
+    "ssnNumber": "",
+    "tinNumber": "13124332552"
+}
+```
+
+url
+
+```
+http://localhost:8080/clients/2
+```
+
+Response:
+
+```
+{
+    "id": 2,
+    "name": "Airplay Tech",
+    "ssnNumber": "87324283943",
+    "tinNumber": ""
+}
+```
+
+url
+
+```
+http://localhost:8080/clients/name/{nameSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/name/dell
+```
+
+Response:
+
+
+```
+[
+    {
+        "id": 1,
+        "name": "Dell Inc.",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    }
+]
+```
+
+url
+
+```
+http://localhost:8080/clients/ssn/{ssnSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/ssn/849324
+```
+
+Response:
+
+
+```
+[
+  {
+    "id": 1,
+    "name": "Dell Inc.",
+    "ssnNumber": "932849324293",
+    "tinNumber": ""
+  }
+]
+```
+
+
+url
+
+```
+http://localhost:8080/clients/tin/{tinSegment}
+```
+
+Example:
+
+```
+http://localhost:8080/clients/tin/93
+```
+
+Response:
+
+
+```
+[
+  {
+    "id": 1,
+    "name": "Dell Inc.",
+    "ssnNumber": "932849324293",
+    "tinNumber": ""
+  }
+]
+```
+
+
+
+
+[POST]
+
+
+url
+
+```
+http://localhost:8080/clients
+```
+
+Request Body:
+
+```
+    {
+        "name": "Pizza Planet",
+        "ssnNumber": "932849324293",
+        "tinNumber": ""
+    }
+```
+
+
+
 ### Job
 
 Url
@@ -126,6 +368,7 @@ Url
 ```
 GET /jobs?categories=Training,Programming
 ```
+
 Response:
 
 ```
@@ -199,6 +442,31 @@ Response
 ]
 
 ```
+
+* [POST]
+
+Url
+
+```
+http://localhost:8080/categories
+```
+Body
+
+```
+{
+ "name": "Sales"
+} 
+```
+
+Response
+
+```
+{
+    "id": 6,
+    "name": "Sales"
+}
+```
+
 
 ### Job Order
 

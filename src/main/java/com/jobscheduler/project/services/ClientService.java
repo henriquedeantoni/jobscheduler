@@ -23,14 +23,43 @@ public class ClientService {
 	public List<Client> findAll(){
 		return repository.findAll();
 	}
-	
+
 	public Client findById(Long id) {
 	 	Optional<Client> obj =  repository.findById(id);
 		return obj.get();
 	}
+
+	public Client findByName(String name) {
+	 	Client obj =  repository.findByName(name);
+		return obj;
+	}
 	
 	public Client insert(Client obj) {
-		return repository.save(obj);
+		
+	    if (obj == null) {
+	        throw new IllegalArgumentException("client cannot be null.");
+	    }
+
+	    if (obj.getName() == null || obj.getName().trim().isEmpty()) {
+	        throw new IllegalArgumentException("client name cannot be empty.");
+	    }
+
+	    String ssn = obj.getSsnNumber();
+	    String tin = obj.getTinNumber();
+
+	    if ((ssn == null || ssn.isEmpty()) && (tin == null || tin.isEmpty())) {
+	        throw new IllegalArgumentException("client must have either ssn number or tin number.");
+	    }
+
+	    if (ssn != null && !ssn.isEmpty() && tin != null && !tin.isEmpty()) {
+	        throw new IllegalArgumentException("client must not have both ssn number and tin number.");
+	    }
+
+	    if (findByName(obj.getName()) != null) {
+	        throw new IllegalArgumentException("client already exists.");
+	    }
+
+	    return repository.save(obj);
 	}
 	
 	public void delete(Long id) {
