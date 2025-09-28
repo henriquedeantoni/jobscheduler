@@ -15,15 +15,20 @@ import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.Location;
 import com.jobscheduler.project.entities.OrderItem;
+import com.jobscheduler.project.entities.OrderSupply;
 import com.jobscheduler.project.entities.Payment;
+import com.jobscheduler.project.entities.Supply;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
+import com.jobscheduler.project.entities.enums.UserStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.ClientRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
 import com.jobscheduler.project.repositories.LocationRepository;
 import com.jobscheduler.project.repositories.OrderItemRepository;
+import com.jobscheduler.project.repositories.OrderSupplyRepository;
+import com.jobscheduler.project.repositories.SupplyRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
 @Configuration
@@ -40,10 +45,16 @@ public class TestConfig implements CommandLineRunner {
 	private CategoryRepository categoryRepository;
 	
 	@Autowired
+	private SupplyRepository supplyRepository;
+	
+	@Autowired
 	private JobRepository jobRepository;
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private OrderSupplyRepository orderSupplyRepository;
 	
 	@Autowired
 	private ClientRepository clientRepository;
@@ -68,6 +79,11 @@ public class TestConfig implements CommandLineRunner {
 		User user4 = new User(null, "Carlos Santos", "carlosantosrp@gmail.com", "21997850123", "123qiud");
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
+		
+		user1.setUserStatus(UserStatus.ACTIVE);
+		user2.setUserStatus(UserStatus.ACTIVE);
+		
+		userRepository.saveAll(Arrays.asList(user1, user2));
 
 		Location loc1 = new Location("Street 34th", "456", "Jacaranda Alameda", "North Carolina", "next to Mc Donalds", "Saint Leo", "40042120");
 		Location loc2 = new Location("Street 17th", "125", "Downtown", "North Carolina", "opposite St Lourdes Churh", "Saint Leo", "40042510");
@@ -115,6 +131,15 @@ public class TestConfig implements CommandLineRunner {
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
 		
+		Supply sup1 = new Supply(null, "PixelPro InkJet 320XL", "High-capacity ink cartridge for professional color printing.", "AHT76127", new BigDecimal(35.00));
+		Supply sup2 = new Supply(null, "DataStream UXL FiberLink Cable", "Ultra-durable fiber optic patch cable for high-speed networking.", "92891hs2u8", new BigDecimal(8.00));
+		Supply sup3 = new Supply(null, "ByteGuard PowerShield 650VA", "Compact UPS (uninterruptible power supply) for desktop setups.", "PPw01932", new BigDecimal(89.50));
+		Supply sup4 = new Supply(null, "BlueView Anti-Glare Screen Film", "Protective screen filter for monitors and laptops.", "1895SWQi", new BigDecimal(25.99));
+		Supply sup5 = new Supply(null, "CoreSync Thermal Compound X7", "High-performance thermal paste for CPUs and GPUs.", "6qw46qw", new BigDecimal(3.99));
+		Supply sup6 = new Supply(null, "NanoKey SilentTouch Keyboard Coverage", "Silicone protective cover for mechanical and membrane keyboards.", "6qw46qw", new BigDecimal(14.50));
+		
+		supplyRepository.saveAll(Arrays.asList(sup1, sup2, sup3, sup4, sup5, sup6));
+		
 		j1.getCategories().add(ct1);
 		j2.getCategories().add(ct3);
 		j2.getCategories().add(ct4);
@@ -134,6 +159,15 @@ public class TestConfig implements CommandLineRunner {
 	
 		orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
 
+		OrderSupply orderSupply1 = new OrderSupply(jo1, sup1, 2, sup1.getCost());
+		OrderSupply orderSupply2 = new OrderSupply(jo1, sup2, 1, sup2.getCost());
+		OrderSupply orderSupply3 = new OrderSupply(jo2, sup3, 1, sup3.getCost());
+		OrderSupply orderSupply4 = new OrderSupply(jo3, sup4, 1, sup4.getCost());
+		OrderSupply orderSupply5 = new OrderSupply(jo4, sup5, 8, sup5.getCost());
+		OrderSupply orderSupply6 = new OrderSupply(jo5, sup6, 10, sup5.getCost());
+		
+		orderSupplyRepository.saveAll(Arrays.asList(orderSupply1, orderSupply2, orderSupply3, orderSupply4, orderSupply5, orderSupply6));
+		
 		Payment payment1 = new Payment(null, Instant.parse("2019-06-20T19:15:07Z"), jo1);
 		jo1.setPayment(payment1);
 		Payment payment2 = new Payment(null, Instant.parse("2019-07-21T04:32:10Z"), jo2);

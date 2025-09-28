@@ -359,7 +359,116 @@ Request Body:
     }
 ```
 
+### User
 
+[GET]
+
+url
+
+```
+http://localhost:8080/users
+```
+
+Response:
+
+<details>
+<summary>Exemplo</summary>
+
+```
+[
+  {
+    "id": 1,
+    "name": "Clara Almeida",
+    "email": "claraalma@gmail.com",
+    "phone": "55998745321",
+    "passwordHash": "h54fiw21u",
+    "userStatus": "ACTIVE"
+  },
+  {
+    "id": 2,
+    "name": "Ricardo Peixoto",
+    "email": "rikapeix@gmail.com",
+    "phone": "11997524536",
+    "passwordHash": "123ABCDs456",
+    "userStatus": "ACTIVE"
+  },
+  {
+    "id": 3,
+    "name": "Ana Silva",
+    "email": "anasilvafr@gmail.com",
+    "phone": "16987451265",
+    "passwordHash": "123qiud",
+    "userStatus": "ONAPPROVAL"
+  },
+  {
+    "id": 4,
+    "name": "Carlos Santos",
+    "email": "carlosantosrp@gmail.com",
+    "phone": "21997850123",
+    "passwordHash": "123qiud",
+    "userStatus": "ONAPPROVAL"
+  }
+]
+```
+</details>
+
+url
+
+```
+http://localhost:8080/users/{id}
+```
+
+Example:
+
+```
+http://localhost:8080/users/1
+```
+
+Response:
+
+<details>
+<summary>Exemplo</summary>
+
+```
+{
+  "id": 1,
+  "name": "Clara Almeida",
+  "email": "claraalma@gmail.com",
+  "phone": "55998745321",
+  "passwordHash": "h54fiw21u",
+  "userStatus": "ACTIVE"
+}
+```
+</details>
+
+url
+
+```
+http://localhost:8080/users/email/{email}
+```
+
+Example:
+
+```
+http://localhost:8080/users/email/claraalma@gmail.com
+```
+
+Response:
+
+<details>
+<summary>Exemplo</summary>
+
+```
+{
+  "id": 1,
+  "name": "Clara Almeida",
+  "email": "claraalma@gmail.com",
+  "phone": "55998745321",
+  "passwordHash": "h54fiw21u",
+  "userStatus": "ACTIVE"
+}
+```
+</details>
 
 ### Job
 
