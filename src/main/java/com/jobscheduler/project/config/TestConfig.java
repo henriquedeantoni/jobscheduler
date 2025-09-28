@@ -18,6 +18,7 @@ import com.jobscheduler.project.entities.OrderItem;
 import com.jobscheduler.project.entities.Payment;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
+import com.jobscheduler.project.entities.enums.UserStatus;
 import com.jobscheduler.project.repositories.CategoryRepository;
 import com.jobscheduler.project.repositories.ClientRepository;
 import com.jobscheduler.project.repositories.JobOrderRepository;
@@ -68,6 +69,11 @@ public class TestConfig implements CommandLineRunner {
 		User user4 = new User(null, "Carlos Santos", "carlosantosrp@gmail.com", "21997850123", "123qiud");
 		
 		userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
+		
+		user1.setUserStatus(UserStatus.ACTIVE);
+		user2.setUserStatus(UserStatus.ACTIVE);
+		
+		userRepository.saveAll(Arrays.asList(user1, user2));
 
 		Location loc1 = new Location("Street 34th", "456", "Jacaranda Alameda", "North Carolina", "next to Mc Donalds", "Saint Leo", "40042120");
 		Location loc2 = new Location("Street 17th", "125", "Downtown", "North Carolina", "opposite St Lourdes Churh", "Saint Leo", "40042510");
