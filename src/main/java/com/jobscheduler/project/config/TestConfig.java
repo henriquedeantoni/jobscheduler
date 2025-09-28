@@ -15,6 +15,7 @@ import com.jobscheduler.project.entities.Job;
 import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.Location;
 import com.jobscheduler.project.entities.OrderItem;
+import com.jobscheduler.project.entities.OrderSupply;
 import com.jobscheduler.project.entities.Payment;
 import com.jobscheduler.project.entities.Supply;
 import com.jobscheduler.project.entities.User;
@@ -26,6 +27,7 @@ import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
 import com.jobscheduler.project.repositories.LocationRepository;
 import com.jobscheduler.project.repositories.OrderItemRepository;
+import com.jobscheduler.project.repositories.OrderSupplyRepository;
 import com.jobscheduler.project.repositories.SupplyRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
@@ -50,6 +52,9 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private OrderSupplyRepository orderSupplyRepository;
 	
 	@Autowired
 	private ClientRepository clientRepository;
@@ -154,6 +159,15 @@ public class TestConfig implements CommandLineRunner {
 	
 		orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
 
+		OrderSupply orderSupply1 = new OrderSupply(jo1, sup1, 2, sup1.getCost());
+		OrderSupply orderSupply2 = new OrderSupply(jo1, sup2, 1, sup2.getCost());
+		OrderSupply orderSupply3 = new OrderSupply(jo2, sup3, 1, sup3.getCost());
+		OrderSupply orderSupply4 = new OrderSupply(jo3, sup4, 1, sup4.getCost());
+		OrderSupply orderSupply5 = new OrderSupply(jo4, sup5, 8, sup5.getCost());
+		OrderSupply orderSupply6 = new OrderSupply(jo5, sup6, 10, sup5.getCost());
+		
+		orderSupplyRepository.saveAll(Arrays.asList(orderSupply1, orderSupply2, orderSupply3, orderSupply4, orderSupply5, orderSupply6));
+		
 		Payment payment1 = new Payment(null, Instant.parse("2019-06-20T19:15:07Z"), jo1);
 		jo1.setPayment(payment1);
 		Payment payment2 = new Payment(null, Instant.parse("2019-07-21T04:32:10Z"), jo2);
