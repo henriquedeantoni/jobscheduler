@@ -16,6 +16,7 @@ import com.jobscheduler.project.entities.JobOrder;
 import com.jobscheduler.project.entities.Location;
 import com.jobscheduler.project.entities.OrderItem;
 import com.jobscheduler.project.entities.Payment;
+import com.jobscheduler.project.entities.Supply;
 import com.jobscheduler.project.entities.User;
 import com.jobscheduler.project.entities.enums.OrderStatus;
 import com.jobscheduler.project.entities.enums.UserStatus;
@@ -25,6 +26,7 @@ import com.jobscheduler.project.repositories.JobOrderRepository;
 import com.jobscheduler.project.repositories.JobRepository;
 import com.jobscheduler.project.repositories.LocationRepository;
 import com.jobscheduler.project.repositories.OrderItemRepository;
+import com.jobscheduler.project.repositories.SupplyRepository;
 import com.jobscheduler.project.repositories.UserRepository;
 
 @Configuration
@@ -39,6 +41,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private SupplyRepository supplyRepository;
 	
 	@Autowired
 	private JobRepository jobRepository;
@@ -120,6 +125,15 @@ public class TestConfig implements CommandLineRunner {
 		Job j6 = new Job(null, "Infrastructure + server project", "Cras fringilla convalis sem vel faucbus.", 120, new BigDecimal(13800.00), new BigDecimal(115.00), "");
 		
 		jobRepository.saveAll(Arrays.asList(j1, j2, j3, j4, j5, j6));
+		
+		Supply sup1 = new Supply(null, "PixelPro InkJet 320XL", "High-capacity ink cartridge for professional color printing.", "AHT76127", new BigDecimal(35.00));
+		Supply sup2 = new Supply(null, "DataStream UXL FiberLink Cable", "Ultra-durable fiber optic patch cable for high-speed networking.", "92891hs2u8", new BigDecimal(8.00));
+		Supply sup3 = new Supply(null, "ByteGuard PowerShield 650VA", "Compact UPS (uninterruptible power supply) for desktop setups.", "PPw01932", new BigDecimal(89.50));
+		Supply sup4 = new Supply(null, "BlueView Anti-Glare Screen Film", "Protective screen filter for monitors and laptops.", "1895SWQi", new BigDecimal(25.99));
+		Supply sup5 = new Supply(null, "CoreSync Thermal Compound X7", "High-performance thermal paste for CPUs and GPUs.", "6qw46qw", new BigDecimal(3.99));
+		Supply sup6 = new Supply(null, "NanoKey SilentTouch Keyboard Coverage", "Silicone protective cover for mechanical and membrane keyboards.", "6qw46qw", new BigDecimal(14.50));
+		
+		supplyRepository.saveAll(Arrays.asList(sup1, sup2, sup3, sup4, sup5, sup6));
 		
 		j1.getCategories().add(ct1);
 		j2.getCategories().add(ct3);
